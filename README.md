@@ -1,6 +1,6 @@
 # An example of how to use Terraform Enterprise (tfe) provider to setup Global (terraform & environment) variables for workspaces in Terraform Cloud (TFC)|Terraform Enterprise (TFE)
 
-### Probably the easiest option for now is to use the Terraform Enterprise (tfe) provider for Terraform to automate setting variables across (multiple) all TFC|TFE workspaces that keeps variables management in a more systematic way than would be possible by creating them ad-hoc per-workspace.
+### Probably the easiest option for now is to use the Terraform Enterprise (tfe) provider for Terraform to automate setting variables across multiple|all TFC|TFE workspaces that keeps variables management in a more systematic way than would be possible by creating them ad-hoc per-workspace.
 
 ### Requirements
 
