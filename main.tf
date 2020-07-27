@@ -12,11 +12,11 @@ data "tfe_workspace_ids" "ids" {
 module "ws1" {
   source = "./the_variables"
   #name = "aws-shared-credentials-file" #"ws1"
-  the_workspace_id = data.tfe_workspace_ids.ids["aws-shared-credentials-file"]
+  the_workspace_id = data.tfe_workspace_ids.external_ids["aws-shared-credentials-file"]
 }
 
 module "ws2" {
   source = "./the_variables"
   #name = "terraform-null-localexec"
-  the_workspace_id = data.tfe_workspace_ids.ids["terraform-null-localexec"] #["ws2"]
+  the_workspace_id = data.tfe_workspace_ids.external_ids["terraform-null-localexec"] #["ws2"]
 }
