@@ -6,7 +6,7 @@ provider "tfe" {
 
 data "tfe_workspace_ids" "ids" {
   names        = ["*"]
-  organization = "my-org-name"
+  organization = "atanasc-01" #"my-org-name"
 }
 
 module "ws1" {
