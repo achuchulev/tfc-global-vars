@@ -45,7 +45,7 @@ resource "tfe_variable" "v2" {
 }
 ```
 
-##### II. `./main.tf` will instantiate the module for each workspace that should have those Global variables:
+##### II. Adding a module per workspace in `./main.tf` will instantiate the module for each workspace to set those Global variables:
 
 ```
 variable "tfe_token" {}
@@ -73,7 +73,7 @@ module "ws2" {
 ### How to use
 
 - fork the repo
-- adjust the Global vars needed for the Organization within `global_variables/variables.tf`
+- adjust the __Global vars__ needed for the Organization within `global_variables/variables.tf`
 - in `./main.tf` add a module for every workspace where the __Global vars__ are needed
 - create a workspace in TFC/TFE that will namage the __Global vars__ and link it to the forked repo (make sure that `Include submodules on clone` is selected from the `Version Control` tab of workspace's settings)
 - set a `tfe_token` for the `tfe` provider authentication as _terraform sensitive_ variable (make sure that the token needs to have permissions to write variables to the workspaces)
