@@ -13,11 +13,11 @@
 ```
 .
 ├── main.tf
-└── the_variables
+└── global_variables
     └── variables.tf
 ```    
 
-##### I. Create a module `the_variables/variables.tf` to manage all of the variables:
+##### I. Create a module `global_variables/variables.tf` to manage all of the variables:
 
 ```
 variable "the_workspace_id" {}
@@ -45,7 +45,7 @@ resource "tfe_variable" "v2" {
 variable "tfe_token" {}
 
 provider "tfe" {
-  token = var.tfe_token # the token needs to have permissions to write variables to the workspaces
+  token = var.tfe_token    # the token needs to have permissions to write variables to the workspaces
 }
 
 data "tfe_workspace_ids" "ids" {
@@ -54,12 +54,12 @@ data "tfe_workspace_ids" "ids" {
 }
 
 module "ws1" {
-  source           = "./the_variables"
+  source           = "./global_variables"
   the_workspace_id = data.tfe_workspace_ids.all.external_ids["ws1"]
 }
 
 module "ws2" {
-  source           = "./the_variables"
+  source           = "./global_variables"
   the_workspace_id = data.tfe_workspace_ids.all.external_ids["ws2"]
 }
 ```
@@ -73,8 +73,8 @@ module "ws2" {
 ### How to use
 
 - fork the repo
-- adjust the Global vars needed for the Organization within `the_variables/variables.tf`
-- add a module for every workspace where the __Global vars__ are needed
-- create a workspace in TFC/TFE that will namage the __Global vars__ and link it to the forked repo (makeing sure that `Include submodules on clone` is selected from the `Version Control` tab of workspace's settings)
-- set a `tfe_token` for the `tfe` provider authentication as _terraform sensitive_ variable
+- adjust the Global vars needed for the Organization within `global_variables/variables.tf`
+- in `./main.tf` add a module for every workspace where the __Global vars__ are needed
+- create a workspace in TFC/TFE that will namage the __Global vars__ and link it to the forked repo (make sure that `Include submodules on clone` is selected from the `Version Control` tab of workspace's settings)
+- set a `tfe_token` for the `tfe` provider authentication as _terraform sensitive_ variable (make sure that the token needs to have permissions to write variables to the workspaces)
 - Run Plan/Apply
