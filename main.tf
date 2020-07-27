@@ -6,24 +6,15 @@ provider "tfe" {
 
 data "tfe_workspace_ids" "all" {
   names        = ["*"]
-  organization = "atanasc-01" #"my-org-name"
+  organization = "my-org-name"
 }
 
-# resource "null_resource" "MultiHelloWorld" {
-#   triggers = {
-#     uuid = uuid()
-#   }
-#   provisioner "local-exec" {
-#     command = "echo ${data.tfe_workspace_ids.all.external_ids["aws-shared-credentials-file"]}"
-#   }
-# }
-
 module "ws1" {
-  source = "./the_variables"
-  the_workspace_id = data.tfe_workspace_ids.all.external_ids["aws-shared-credentials-file"]
+  source = "./global_variables"
+  the_workspace_id = data.tfe_workspace_ids.all.external_ids["ws1"]
 }
 
 module "ws2" {
-  source = "./the_variables"
-  the_workspace_id = data.tfe_workspace_ids.all.external_ids["terraform-null-localexec"]
+  source = "./global_variables"
+  the_workspace_id = data.tfe_workspace_ids.all.external_ids["ws2"]
 }
