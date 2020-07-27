@@ -10,11 +10,11 @@ data "tfe_workspace_ids" "all" {
 }
 
 module "ws1" {
-  source = "./the_variables"
+  source = "./global_variables"
   the_workspace_id = data.tfe_workspace_ids.all.external_ids["ws1"]
 }
 
 module "ws2" {
-  source = "./the_variables"
+  source = "./global_variables"
   the_workspace_id = data.tfe_workspace_ids.all.external_ids["ws2"]
 }
